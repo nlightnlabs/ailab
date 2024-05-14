@@ -1,7 +1,7 @@
 import React, {useState, useEffect, forwardRef, useRef} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { generalIcons } from './apis/icons';
-import {formatDateInput} from './functions/formatValue'
+import * as iconsApi from '../apis/icons';
+import {formatDateInput} from '../functions/formatValue'
 
 const MultiInput = forwardRef((props, ref) => {
 
@@ -122,9 +122,7 @@ const MultiInput = forwardRef((props, ref) => {
   const labelStyle ={
     fontSize: labelSize || inputStyle.fontSize,
     fontWeight: labelWeight || "normal",
-    color: labelColor || "rgb(145, 145, 145)",
-    backgroundColor: "rgba(145, 145, 145,0)",
-    background: "rgba(145, 145, 145,0)"
+    color: labelColor || "gray",
   }
 
 
@@ -372,7 +370,7 @@ const MultiInput = forwardRef((props, ref) => {
         {
             props.list && props.list.length>0 && type=="select" && allowAddData && 
             <img 
-              src={`${generalIcons}/add_icon.png`} 
+              src={`${iconsApi.generalIcons}/add_icon.png`} 
               alt="Add Icon"
               style={addIconStyle} 
               onClick={(e)=>handleAddData(e)}>

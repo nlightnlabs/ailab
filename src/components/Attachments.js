@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState, useRef} from 'react'
-import * as iconsApi from "./apis/icons"
+import * as iconsApi from "../apis/icons"
 
 const Attachments = (props) => {
 

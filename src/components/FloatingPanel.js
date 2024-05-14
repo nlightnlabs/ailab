@@ -1,11 +1,11 @@
 import React, {useRef, useState, useEffect} from "react"
-import { toProperCase } from "./functions/formatValue";
-import * as crud from './apis/crud.js'
+import { toProperCase } from "../functions/formatValue";
+import * as iconsApi from '../apis/icons.js'
+import Svg from "./Svg"
 
 const FloatingPanel = (props) => {
-    const { children, title, height, width, displayPanel} = props;
-    const [appIcons, setAppIcons] = useState([])
-
+    const { children, title, height, width, headerColor, headerTextColor, backgroundColor, displayPanel} = props;
+    
     const panelRef = React.useRef();
     const allowDrag = true
 
@@ -13,22 +13,6 @@ const FloatingPanel = (props) => {
     const [isDragging, setIsDragging] = React.useState(false);
     const [offset, setOffset] = React.useState({ x: 0, y: 0 });
 
-    const getAppIcons = async (req, res)=>{
-      const environment = window.environment
-      let appName = ""
-      if(environment ==="freeagent"){
-        appName= "icon"
-      }else{
-        appName="icons"
-      }
-      const response = await crud.getData(appName)
-      setAppIcons(response)
-  
-    }
-
-    useEffect(()=>{
-      getAppIcons()
-    },[])
   
     const containerStyle = {
       position: "fixed",
@@ -39,7 +23,8 @@ const FloatingPanel = (props) => {
       transform: "translate(-50%, -50%)",
       cursor: "move",
       zIndex: 99999,
-      overflow: "hidden"
+      overflow: "hidden",
+      backgroundColor: backgroundColor || "white"
     };
   
     const handleMouseDown = (e) => {
@@ -63,16 +48,33 @@ const FloatingPanel = (props) => {
       });
     };
 
-    const iconButtonStyle = {
-      height: "30px",
-      width: "30px",
-      cursor: "pointer"
+    const HeaderStyle={
+      backgroundColor:"rgb(235,235,235)", 
+      height:"50px", 
+      overflow:"hidden",
+      borderBottom: "2px solid gray",
+      backgroundColor: headerColor || "rgb(0,100,225)"
     }
+
+    const TitleStyle = {
+      fontSize:"20px", 
+      color: headerTextColor || "white", 
+      fontWeight: "bold",
+    }
+
+    const BodyStyle = {
+        height: "95%", 
+        width: "100%", 
+        overflowY:"auto", 
+        overflowX: "hidden",
+    }
+  
+
   
     return (
       <div
         ref={panelRef}
-        className="d-flex flex-column bg-light shadow border border-3 rounded-3"
+        className="d-flex flex-column bg-white shadow border border-3 rounded-3"
         style={{
           ...containerStyle,
           left: position.x + "px",
@@ -83,15 +85,26 @@ const FloatingPanel = (props) => {
         onMouseMove={handleMouseMove}
         onDoubleClick={handleMouseUp}
       >
-        <div className="d-flex justify-content-between align-items-center" style={{backgroundColor:"rgb(0,100,255)", height:"40px", overflow:"hidden"}}>
-          <div className="d-flex ms-1" style={{fontSize:"20px", color: "white", fontWeight: "bold"}}>{title && toProperCase(title.replaceAll("_"," "))}</div>
-          <div className="d-flex">
-            <img src={appIcons.length>0 ? appIcons.find(i=>i.name==="close").image : null} style={iconButtonStyle} onClick={(e)=>displayPanel(false)}/>
+        <div className="d-flex justify-content-between align-items-center" style={HeaderStyle}>
+          
+          <div className="d-flex ms-1 align-items-center" style={TitleStyle}>
+            {title && toProperCase(title.replaceAll("_"," "))}
           </div>
+
+          <div 
+            title = "Close Panel"
+            className="d-flex align-items-center me-2" 
+            style={{height: "30px", width:"30px", pointer:"cursor"}}
+            onClick={(e)=>displayPanel(false)}>
+            <Svg iconName={"CloseIcon"}/>
+          </div>
+
         </div>
-        <div className="d-flex flex-wrap" style={{height: "95%", width: "100%", overflowY:"auto", overflowX: "hidden"}}>
+
+        <div className="d-flex flex-wrap p-3" style={BodyStyle}>
           {children}
         </div>
+        
       </div>
     );
   };
