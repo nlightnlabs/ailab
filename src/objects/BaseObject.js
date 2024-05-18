@@ -1,8 +1,12 @@
+const data_type ={
+  
+}
+
 export default class BaseObject {
 
     constructor({id, uuid, description, created, created_by, updated})
         {
-            this.id = id || null; 
+            this.id = {name: "id", data_type: "number", }; 
             this.uuid = uuid || null;
             this.description = description || "";
             this.created = created || new Date();
