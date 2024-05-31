@@ -1,26 +1,25 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { 
-  setAllAppsModule
-} from '../../redux/slices/appsSlice.js'
+import { setAllAppsModule} from '../../redux/slices/appsSlice.js'
+import * as nlightnApi from '../../apis/nlightn.js'
+import Table from '../../components/Table'
 
-import AllApps from './modules/AllApps.js'
-import App from './modules/App.js'
+// import AllApps from './modules/AllApps.js'
+// import App from './modules/App.js'
 
 const Apps = () => {
 
-  const dispatch = useDispatch()
-  
-  const currentModule = useSelector(state=>state.apps.allAppsModule)
+  const [apps, setApps] = useState([])
 
-  const allAppsModules = [
-    {id: "1", name:"AllApps", label: "App Apps", icon: "app_icon.png", component: <AllApps/>},
-    {id: "2", name:"App", label: "App", icon: "app_icon.png", component: <App/>}
-  ]
+  const getApps = async ()=>{
+    const response = await nlightnApi.getTable("apps")
+    setApps(response.data)
+  }
 
   useEffect(()=>{
-    dispatch(setAllAppsModule("AllApps"))
+    getApps()
   },[])
+
 
   const pageStyle ={
     height:"100%", 
@@ -30,7 +29,9 @@ const Apps = () => {
    
   return (
     <div className="d-flex w-100 p-3 flex-column fade-in me-5 fade-in" style={pageStyle}>
-      {allAppsModules.find(i=>i.name===currentModule).component}
+      <Table 
+        data={apps}
+      />
     </div>
   )
 }

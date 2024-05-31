@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { PURGE } from 'redux-persist';
 
+
 export const dataManagementSlice = createSlice({
   name: 'data_management',
   initialState: {
-    apis:[],
-    modules:[],
-    module:[],
+    selectedModule: "all_data",
     showUploadDocumentsForm: false,
     showConnectApiForm: false,
     showConnectDatabaseForm: false,
@@ -14,15 +13,6 @@ export const dataManagementSlice = createSlice({
   reducers: {
     setAllDataSources: (state,action) => {
       state.allDataSources = action.payload
-    },
-    setFiles: (state,action) => {
-      state.files = action.payload
-    },
-    setDatabases: (state,action) => {
-      state.databases = action.payload
-    },
-    setApis: (state,action) => {
-      state.apis = action.payload
     },
     setModules: (state,action) => {
       state.modules = action.payload

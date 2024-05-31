@@ -112,7 +112,7 @@ function App() {
           !userLoggedIn ? <SignIn/>
           :
             <div className="d-flex w-100 justify-content-between" style={{height:"100%"}}>
-                {pages.length>0  && (pages.find(i=>i.name ===currentPage).component)}
+                {pageData.find(i=>i.name ===currentPage).component}
                 {menuItems.length>0 && <Menu menuItems={menuItems} colorTheme={theme}/> }
             </div>
           }

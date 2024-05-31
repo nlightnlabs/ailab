@@ -7,23 +7,28 @@ import {
   setShowConnectDatabaseForm
 } from '../../redux/slices/dataManagementSlice.js'
 
-import AllData from './modules/AllData.js'
-import Documents from './modules/Documents.js'
-import Apis from './modules/Apis.js'
-import Databases from './modules/Databases.js'
+import AllData from '../../modules/dataManagement/modules/AllData'
+import Documents from '../../modules/dataManagement/modules/Documents'
+import Apis from '../../modules/dataManagement/modules/Apis'
+import Databases from '../../modules/dataManagement/modules/Databases'
 
 
 const DataManagement = () => {
 
-    const dispatch = useDispatch()
-   
-    const module = useSelector(state=>state.data_management.module)
-   const modules = [
-    {id: "1", name:"AllData", label: "All Data", icon: "databases_icon.png", component: <AllData/>},
-    {id: "2", name:"Documents", label: "Documents", icon: "document_icon.png", component: <Documents/>},
-    {id: "3", name:"Apis", label: "Apis", icon: "apis_icon.png", component: <Apis/>},
-    {id: "4", name:"Databases", label: "Databases", icon: "databases_icon.png", component: <Databases/>}
+  const dispatch = useDispatch()
+
+  const selectedModule = useSelector((state)=>state.data_management.selectedModule)
+
+  const modules = [
+      {id: "1", name:"all_data", label: "All Data", icon: "databases_icon.png", component: <AllData/>},
+      {id: "2", name:"documents", label: "Documents", icon: "document_icon.png", component: <Documents/>},
+      {id: "3", name:"apis", label: "Apis", icon: "apis_icon.png", component: <Apis/>},
+      {id: "4", name:"databases", label: "Databases", icon: "databases_icon.png", component: <Databases/>}
   ]
+
+    useEffect(()=>{
+      console.log(selectedModule)
+    },[])
 
 
     const [ hoveredItem, setHoveredItem] = useState("Home")
@@ -70,7 +75,7 @@ const DataManagement = () => {
         {/* Module */}
           <div className="d-flex border bg-light">
           {
-            modules.length>0 && modules.find(i=>i.name ===module).component
+            modules.find(i=>i.name ===selectedModule).component
           }
         </div>
     </div>

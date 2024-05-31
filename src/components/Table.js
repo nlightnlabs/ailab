@@ -12,7 +12,7 @@ const Table = (props) => {
     const columnWidths = props.columnWidths || []
     const filterableColumns = props.filterableColumns || []
     const hiddenColumns = props.hiddenColumns || []
-    const sortableColumns = props.sortableColumns !=null ? props.sortableColumns : Object.keys((props.data)[0])
+    const sortableColumns = props.sortableColumns || []
     const sortingOrder = props.sortingOrder || []
     const selectRows = props.selectRows
     const onCellClicked = props.onCellClicked

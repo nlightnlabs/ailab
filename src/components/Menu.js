@@ -38,24 +38,13 @@ const Menu = (props) =>{
     const menuItemRefs = useRef({});
     const menuItemIconRefs = useRef({});
     const menuItemLabelRefs = useRef({});
+
     const createRefs = async (menuItems) => {
         let refList = {};
         menuItems.forEach((item) => {
             refList[item.name] = createRef();
         });
         menuItemRefs.current = refList;
-
-        refList = {};
-        menuItems.forEach((item) => {
-            refList[item.name] = createRef();
-        });
-        menuItemIconRefs.current = refList;
-
-        refList = {};
-        menuItems.forEach((item) => {
-            refList[item.name] = createRef();
-        });
-        menuItemLabelRefs.current = refList;
     };
 
     const [menuColor, setMenuColor] = useState("white")
