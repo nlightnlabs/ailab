@@ -25,10 +25,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}/>
-        <Route path="/Home" element={<Home />}/>
+        {/* <Route path="/Home" element={<Home />}/>
         <Route path="/SignIn" element={<SignIn />}/>
         <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/ResetPassword" element={<ResetPassword />} />
+        <Route path="/ResetPassword" element={<ResetPassword />} /> */}
       </Routes>
     </BrowserRouter>
     </PersistGate>
