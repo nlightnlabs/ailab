@@ -5,12 +5,12 @@ import { setCurrentPage } from '../../../redux/slices/navSlice'
 import * as iconsApi from "../../../apis/icons"
 import * as nlightnApi from "../../../apis/nlightn"
 import MultiInput from "../../../components/MultiInput"
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
 const ResetPassword = () => {
 
   const dispatch = useDispatch()
-  const navigateTo = useNavigate()
+  // const navigateTo = useNavigate()
 
   const [formData, setFormData] = useState({})
 
@@ -154,7 +154,8 @@ return (
           <div className="d-flex justify-content-center">
             <div className="d-flex flex-column">
               <button name="resetPassword" className="btn btn-primary" data-bs-toggle="button" type="submit" onClick={(e)=>handleSubmit(e)}>Reset Password</button>
-              <button name= "backButton" className="btn text-secondary" data-bs-toggle="button" onClick={(e)=>navigateTo("/SignIn")}>Back to Log In</button>
+              {/* <button name= "backButton" className="btn text-secondary" data-bs-toggle="button" onClick={(e)=>navigateTo("/SignIn")}>Back to Log In</button> */}
+              <button name= "backButton" className="btn text-secondary" data-bs-toggle="button">Back to Log In</button>
             </div>
           </div>
         </div>

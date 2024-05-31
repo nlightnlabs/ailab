@@ -5,12 +5,12 @@ import { setCurrentPage } from '../../../redux/slices/navSlice'
 import * as iconsApi from "../../../apis/icons"
 import * as nlightnApi from "../../../apis/nlightn"
 import MultiInput from "../../../components/MultiInput"
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
 const SignUp = () => {
 
   const dispatch = useDispatch()
-  const navigateTo = useNavigate()
+  // const navigateTo = useNavigate()
   const [formData, setFormData] = useState()
  
   const [formClassList, setFormClassList] = useState("form-group needs-validation")
@@ -88,7 +88,7 @@ const SignUp = () => {
               dispatch(setUser(formData))
               dispatch(setUserLoggedIn(true))
               dispatch(setCurrentPage("Home"))
-              navigateTo("/")
+              // navigateTo("/")
           }
           }
           catch(error){
@@ -230,7 +230,7 @@ const getBusinessUnits = async ()=>{
               <label 
                         className="d-flex justify-content-center mt-3 hovered"
                         style={{color: "gray", cursor: "pointer"}}
-                        onClick={(e)=>navigateTo("/ResetPassword")}
+                        // onClick={(e)=>navigateTo("/ResetPassword")}
                         >
                         Forgot Password
                     </label>
@@ -238,7 +238,7 @@ const getBusinessUnits = async ()=>{
                     <label 
                         className="d-flex justify-content-center mt-1 hovered"
                         style={{color: "gray", cursor: "pointer"}}
-                        onClick={(e)=>navigateTo("/SignUp")}
+                        // onClick={(e)=>navigateTo("/SignUp")}
                         >
                         Sign In
                     </label>

@@ -6,12 +6,12 @@ import * as iconsApi from "../../../apis/icons"
 import * as nlightnApi from "../../../apis/nlightn"
 import MultiInput from "../../../components/MultiInput"
 
-import {useNavigate} from "react-router-dom"
+// import {useNavigate} from "react-router-dom"
 
 const SignIn = () => {
 
     const dispatch = useDispatch()
-    const navigateTo = useNavigate()
+    // const navigateTo = useNavigate()
 
     const [logInErrorMsg, setLogInErrorMsg] = useState("")
     const [logInClassName, setLogInClassName] = useState("d-none")
@@ -60,7 +60,7 @@ const SignIn = () => {
         dispatch(setUser(user_data))
         dispatch(setUserLoggedIn(true))
         dispatch(setCurrentPage("Home"))
-        navigateTo("/")
+        // navigateTo("/")
     }else{
         setLogInErrorMsg(`${String.fromCharCode(10060)} invalid user information.`)
         setLogInClassName("text-danger mt-0 mb-3 animate__animated animate__fadeIn ")
@@ -109,7 +109,7 @@ const SignIn = () => {
                     <label 
                         className="d-flex justify-content-center mt-3 hovered"
                         style={{color: "gray", cursor: "pointer"}}
-                        onClick={(e)=>navigateTo("/ResetPassword")}
+                        // onClick={(e)=>navigateTo("/ResetPassword")}
                         >
                         Forgot Password
                     </label>
@@ -117,7 +117,7 @@ const SignIn = () => {
                     <label 
                         className="d-flex justify-content-center mt-1 hovered"
                         style={{color: "gray", cursor: "pointer"}}
-                        onClick={(e)=>navigateTo("/SignUp")}
+                        // onClick={(e)=>navigateTo("/SignUp")}
                         >
                         New User Sign Up
                     </label>
