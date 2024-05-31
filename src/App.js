@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setUserLoggedIn } from './redux/slices/authSlice';
 import { setCurrentPage, setPageList, setMenuItems } from './redux/slices/navSlice';
 import { setAppName, setDbName, setFileStorageBucket, setLogoFile, setTheme} from './redux/slices/envSlice';
+import * as nlightnlApi from './apis/nlightn'
 
 import Home from "./Home";
 import Header from "./components/Header";
@@ -67,15 +68,22 @@ function App() {
     }));
     console.log(x);
     setPages(x);
+
+    getMenuItems(x)
   }
 
-  const getMenuItems = async ()=>{
+  const getMenuItems = async (pageData)=>{
     let modules = pageData.filter(i=>i.showOnMenu===true)
     await Promise.all(modules.map(item=>{
       delete item.component
     }))
     console.log(menuItems)
     dispatch(setMenuItems(modules))
+  }
+
+  const getUsers = async () =>{
+    const response = await nlightnlApi.getTable("users")
+    console.log("users: ",response.data)
   }
 
   useEffect(()=>{
@@ -87,8 +95,10 @@ function App() {
     dispatch(setTheme(theme))
 
     getPages()
-    getMenuItems()
+    
     console.log(currentPage)
+
+    getUsers()
   },[])
 
   return (
