@@ -15,6 +15,10 @@ import ResetPassword from "./modules/authentication/modules/ResetPassword"
 // As of React 18
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
+console.log("ailab is running")
+console.log("Environment: ",process.env.NODE_ENV)
+
+
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

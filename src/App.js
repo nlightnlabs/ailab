@@ -37,6 +37,11 @@ function App() {
   const dispatch = useDispatch();
   const navigateTo = useNavigate()
 
+  useEffect(()=>{
+    console.log("ailab is running")
+    console.log("Environment: ",process.env.NODE_ENV)
+  },[])
+
   // Global States
   const user = useSelector(state => state.authentication.user);
   const userLoggedIn = useSelector(state => state.authentication.userLoggedIn);
