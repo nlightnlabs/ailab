@@ -1,7 +1,9 @@
 import axios from "axios";
 import * as formatValue from '../functions/formatValue.js'
 
-export const baseURL = process.env.NODE_ENV==="production" ? "https://nlightnlabs.net" : "http://localhost:3001"
+// export const baseURL = process.env.NODE_ENV==="production" ? "https://nlightnlabs.net" : "http://localhost:3001"
+export const baseURL = process.env.NODE_ENV==="production" ? "http://52.9.219.131" : "http://localhost:3001"
+
 
 export const serverConnection = axios.create({
   baseURL,
